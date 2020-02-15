@@ -1,5 +1,5 @@
 from tcpgecko import TCPGecko
-import struct, time
+import struct, time, calendar
 import urllib.request
 import urllib.parse
 import json
@@ -32,7 +32,7 @@ def make_string(buf):
 			nbuf += c
 
 def Handle_HomeMenu(self):
-	return 0, "533260406886760458", "In the Menu", "{} titles installed".format(self.MCP_GetTitleCount(self.MCP_Open()) - 68), time.time(), None, "wiiu", "WiiU Menu", None, None
+	return 0, "533260406886760458", "In the Menu", "{} titles installed".format(self.MCP_GetTitleCount(self.MCP_Open()) - 68), calendar.timegm(time.gmtime()), None, "wiiu", "WiiU Menu", None, None
 
 def Handle_Unknown(self, tid_hi, tid_low):
 	url = "https://cemui.com/api/v2/GetGame/title_id/"
@@ -41,7 +41,7 @@ def Handle_Unknown(self, tid_hi, tid_low):
 	url = url + f1 + "-" + f2
 	data = urllib.request.urlopen(url).read().decode("utf-8")
 	ret = json.loads(data)
-	return 0, "535590879503843328", ret["game_publisher"], ret["game_title"], time.time(), None, None, None, None, None
+	return 0, "535590879503843328", ret["game_publisher"], ret["game_title"], calendar.timegm(time.gmtime()), None, None, None, None, None
 
 class WiiU_Titles():
 
