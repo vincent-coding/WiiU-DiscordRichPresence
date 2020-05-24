@@ -11,7 +11,7 @@ ip_addr = f.read()
 if "." not in ip_addr:
 	print("Please modify the 'wiiu_rp.cfg' and put your Wiiu Local IP Address")
 
-tcp = TCPGecko(ip_addr.replace("IP= ", "").replace(" ", ""))
+tcp = TCPGecko(ip_addr.replace("IP=", "").replace(" ", ""))
 
 titles = WiiU_Titles(tcp)
 titles.init_titles()
